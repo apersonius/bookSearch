@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { userMutation } from '@apollo/client';
-import { createUser } from '../utils/API';
+// import { createUser } from '../utils/API';
+import { CREATE_USER } from '../utils/mutations'
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
