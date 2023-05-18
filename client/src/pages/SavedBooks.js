@@ -23,7 +23,7 @@ const SavedBooks = () => {
       try {
         cache.writeQuery({
           query: QUERY_SINGLEUSER,
-          data: { me: removeBook }
+          data: { getSingleUser: removeBook }
         })
       } catch (e) {
         console.error(e);
@@ -60,7 +60,7 @@ const SavedBooks = () => {
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedBooks.length
+          {userData.savedBooks.length && userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
