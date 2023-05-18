@@ -23,12 +23,7 @@ type Auth {
 }
 
 type Query {
-    getSingleUser(user: ID, params: GetSingleUserParams): User
-}
-
-input GetSingleUserParams {
-    id: ID
-    username: String
+    getSingleUser: User
 }
 
 type Mutation {

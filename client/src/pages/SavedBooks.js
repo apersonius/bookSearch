@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 
 import { DELETE_BOOK } from '../utils/mutations';
-import { QUERY_SINGLEUSER } from '../utils/queries'
+import { QUERY_SINGLEUSER } from '../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 
 import Auth from '../utils/auth';
@@ -15,7 +15,7 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_SINGLEUSER)
-  const userData = data?.me || []
+  const userData = data?.getSingleUser || []
   console.log(userData);
 
   const [removeBook] = useMutation(DELETE_BOOK, {
