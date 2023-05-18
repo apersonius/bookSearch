@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { userMutation } from '@apollo/client';
-// import { createUser } from '../utils/API';
 import { CREATE_USER } from '../utils/mutations'
 import Auth from '../utils/auth';
 
@@ -23,13 +22,6 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(userFormData);
-
-    // check if form has everything (as per react-bootstrap docs)
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
 
     try {
       const { data } = await addUser({

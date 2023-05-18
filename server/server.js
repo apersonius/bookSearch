@@ -1,14 +1,17 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
-const { start } = require('repl');
+const { ApolloServer } = require('apollo-server-express');
+
+const { typeDefs, resolvers } = require('./schemas');
+const { authMiddleWare } = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleWare
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,16 +22,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-// app.use(routes);
-
-// db.once('open', () => {
-//   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-// });
-
 app.get('/', (req, res) => {
-  res.sendFild(path.join(__dirname, '../client/.../index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-// fix above route
 
 const startApolloServer = async () => {
   await server.start();
