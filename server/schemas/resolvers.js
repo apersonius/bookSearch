@@ -48,6 +48,7 @@ const resolvers = {
                     { $addToSet: { savedBooks: body } },
                     { new: true, runValidators: true }
                 );
+                // updatedUser.email = user.email;
                 return updatedUser;
             } catch (err) {
                 console.log(err);
