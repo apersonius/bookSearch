@@ -33,7 +33,7 @@ input GetSingleUserParams {
 
 type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
-    login(input: LoginInput!): Auth
+    login(email: String!, password: String!): Auth
     saveBook(body: BookInput!): User
     deleteBook(bookId: String!): User
 }

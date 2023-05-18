@@ -32,7 +32,7 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('user not found');
             }
-            const correctPassword = await user.isCorrectPassword(body.password);
+            const correctPassword = await user.isCorrectPassword(password);
             if (!correctPassword) {
                 throw new AuthenticationError('incorrect password');
             }
