@@ -4,21 +4,28 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        getSingleUser: async (_, { user, params }, { res }) => {
-            try {
-                const foundUser = await User.findOne({
-                    $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-                });
+        getSingleUser: async (parent, args, context) => {
+            // try {
+            //     const foundUser = await User.findOne({
+            //         $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
+            //     });
 
-                if (!foundUser) {
-                    throw new Error('no user with this id');
-                }
+            //     if (!foundUser) {
+            //         throw new Error('no user with this id');
+            //     }
 
-                return foundUser;
-            } catch (error) {
-                res.status(400);
-                throw error;
-            }
+            //     return foundUser;
+            // } catch (error) {
+            //     res.status(400);
+            //     throw error;
+            // }
+            if (context.user) {
+                const userData = await User.findOne({
+                    _id: context.user._id
+                }) .select(-'__v -password')
+
+                return userData;
+            } throw new AuthenticationError('not logged in');
         },
     },
     Mutation: {
