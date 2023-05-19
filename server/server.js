@@ -39,5 +39,3 @@ const startApolloServer = async () => {
 };
 
 startApolloServer();
-
-// deploying
